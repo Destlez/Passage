@@ -1,6 +1,6 @@
 from django.db import models
 
-from pereval.passage.extensons import *
+from passage.extensons import *
 
 
 class User(models.Model):
@@ -30,12 +30,12 @@ class Passages(models.Model):
     connect = models.TextField(null=True, blank=True)
     status =models.CharField(max_length=10, choices=CHOICE_TYPE, default='new')
 
-    user = models.ForeignKey(Coordinates, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     coordinates = models.ForeignKey(Coordinates,on_delete=models.CASCADE)
-    level = models.TextField(Levels, on_delete=models.CASCADE)
+    level = models.ForeignKey(Levels, on_delete=models.CASCADE)
 
 class Images(models.Model):
     urls = models.URLField(null=True, blank=True)
     title = models.TextField(max_length=255, null=True, blank=True)
 
-    passage = models.FloatField(Passages, on_delete=models.CASCADE, null=True, blank=True)
+    passage = models.ForeignKey(Passages, on_delete=models.CASCADE, null=True, blank=True)

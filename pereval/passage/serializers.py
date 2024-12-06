@@ -22,6 +22,8 @@ class PassagesSerializer(serializers.ModelSerializer):
     user = UserSerializer()
     coordinates = CoordinatesSerializer()
     level = LevelsSerializer()
+    add_time = serializers.DateTimeField(format='%d %m %Y %H:%M:%S', read_only=True)
+    status = serializers.CharField(read_only=True)
 
     class Meta:
         model = Passages
