@@ -13,7 +13,7 @@ class User(models.Model):
 class Coordinates(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
-    heitht = models.IntegerField()
+    height = models.IntegerField()
 
 
 class Levels(models.Model):
@@ -25,7 +25,7 @@ class Levels(models.Model):
 class Passages(models.Model):
     title = models.CharField(max_length=100, null=True, blank=True)
     beauty_title = models.TextField(null=True, blank=True)
-    other_titlt =models.CharField(max_length=100, null=True, blank=True)
+    other_title =models.CharField(max_length=100, null=True, blank=True)
     add_time =models.DateTimeField(auto_now_add=True, null=True, blank=True)
     connect = models.TextField(null=True, blank=True)
     status =models.CharField(max_length=10, choices=CHOICE_TYPE, default='new')
@@ -35,7 +35,7 @@ class Passages(models.Model):
     level = models.ForeignKey(Levels, on_delete=models.CASCADE)
 
 class Images(models.Model):
-    urls = models.URLField(null=True, blank=True)
+    urls = models.TextField(null=True, blank=True)
     title = models.TextField(max_length=255, null=True, blank=True)
 
     passage = models.ForeignKey(Passages, on_delete=models.CASCADE, null=True, blank=True)

@@ -6,17 +6,17 @@ from .models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        Fields = '__all__'
+        fields = ['email', 'phone', 'fam', 'name', 'otc']
 
 class LevelsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Levels
-        fields = '__all__'
+        fields = ['winter', 'summer', 'autumn', 'spring']
 
 class CoordinatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Coordinates
-        fields = '__all__'
+        fields = ['latitude', 'longitude', 'height']
 
 class PassagesSerializer(serializers.ModelSerializer):
     user = UserSerializer()
@@ -27,7 +27,10 @@ class PassagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Passages
-        fields = '__all__'
+        fields = ['id', 'title', 'beauty_title',
+                  'other_title', 'connect', 'user',
+                  'coordinates', 'level',
+                  'add_time', 'status']
 
     def create(self,validated_date):
         user_date = validated_date.pop('user')
@@ -77,7 +80,7 @@ class ImagesSerializer(serializers.ModelSerializer):
 
     class Meta:
         Model = Images
-        fields = '__all__'
+        fields = ['urls', 'title']
 
     def create(self, validered_date):
         passage_date = validered_date.pop('passage')

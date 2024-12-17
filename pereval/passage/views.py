@@ -4,8 +4,11 @@ from rest_framework.response import Response
 from rest_framework import viewsets, status
 from .serializers import UserSerializer, CoordinatesSerializer, LevelsSerializer, ImagesSerializer, PassagesSerializer
 from .models  import User, Coordinates, Levels, Images, Passages
+from drf_spectacular.utils import extend_schema
 
 
+
+@extend_schema(tags=['API по работе с координатами'])
 class CoordinatesView(viewsets.ModelViewSet):
     queryset = Coordinates.objects.all()
     serializer_class = CoordinatesSerializer
